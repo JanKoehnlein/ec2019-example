@@ -1,0 +1,5 @@
+project {
+	uri = "https://www.typefox.io/EclipseCon/Eclipe"
+	name = Eclipse
+	version = "0.0.1"
+}

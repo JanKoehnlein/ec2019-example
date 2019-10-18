@@ -1,0 +1,52 @@
+namespace Eclipse
+
+class Conference -> Entity {
+    mandatory location (String)
+}
+
+roleType ConferenceRole
+roleType ParticipantRole
+
+assocClass Participation {
+    mandatory participant (Individual) role ParticipantRole
+    mandatory conference (Conference) role ConferenceRole
+}
+
+obj EclipseCon2019 (Conference) {
+    location = "Ludwigsburg"
+}
+
+assoc a0 (Participation) {
+    participant = Jan
+    conference = EclipseCon2019
+}
+
+assoc a1 (Participation) {
+    participant = Miro
+    conference = EclipseCon2019
+}
+
+assoc a2 (Participation) {
+    participant = Sven
+    conference = EclipseCon2019
+}
+
+assoc a3 (Participation) {
+    participant = Mo
+    conference = EclipseCon2019
+}
+
+assoc a4 (Participation) {
+    participant = Anton
+    conference = EclipseCon2019
+}
+
+assoc a5 (Participation) {
+    participant = Alex
+    conference = EclipseCon2019
+}
+
+assoc a6 (Participation) {
+    participant = Christin
+    conference = EclipseCon2019
+}

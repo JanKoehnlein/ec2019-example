@@ -1,0 +1,178 @@
+namespace Eclipse
+
+class Entity {}
+
+class OsProject -> Entity {
+    mandatory name (String)
+    currentVersion (String?)
+}
+
+class Individual -> Entity {
+    mandatory firstName (String)
+    mandatory lastName (String)
+    email (String?)
+}
+
+roleType CommitterRole
+roleType ProjectRole
+
+assocClass Committer {
+	mandatory committer (Individual) role CommitterRole
+	mandatory osProject (OsProject) role ProjectRole
+    since (Date?)
+}
+
+class Enterprise -> Entity  {
+    mandatory name (String)
+    link employees through Employment from employer to employee
+}
+
+roleType EmployerRole
+roleType EmployeeRole
+
+assocClass Employment {
+    mandatory employer (Enterprise) role EmployerRole
+    mandatory employee (Individual) role EmployeeRole
+    start (Date?)
+    end (Date?)
+}
+
+obj Jan (Individual) {
+    firstName = "Jan"
+    lastName = "Köhnlein"
+    email = "jan.koehnlein@typefox.io"
+}
+
+obj Miro (Individual) {
+    firstName = "Miro"
+    lastName = "Spönemann"
+    email = "miro.spoenemann@typefox.io"
+}
+
+obj Sven (Individual) {
+    firstName = "Sven"
+    lastName = "Efftinge"
+}
+
+obj Mo (Individual) {
+    firstName = "Moritz"
+    lastName = "Eysholdt"
+}
+
+obj Anton (Individual) {
+    firstName = "Anton"
+    lastName = "Kosyakov"
+}
+
+obj Alex (Individual) {
+    firstName = "Alex"
+    lastName = "Tugarev"
+}
+
+obj Christin (Individual) {
+    firstName = "Christin"
+    lastName = "Frohne"
+}
+
+roleType ParentProjectRole
+roleType SubProjectRole
+
+assocClass SubProject {
+    mandatory parent (OsProject) role ParentProjectRole
+    mandatory sub (OsProject) role SubProjectRole
+}
+
+obj ECD (OsProject) {
+    name = "Eclipse Cloud Development"
+}
+
+obj Theia (OsProject) {
+    name = "Eclipse Theia"
+}
+
+obj Sprotty (OsProject) {
+    name = "Eclipse Sprotty"
+}
+
+assoc p0 (SubProject) {
+    parent = ECD
+    sub = Sprotty
+}
+assoc p1 (SubProject) {
+    parent = ECD
+    sub = Theia
+}
+
+assoc c0 (Committer) {
+    committer = Jan
+    osProject = Theia
+}
+
+assoc c1 (Committer) {
+    committer = Miro
+    osProject = Theia
+}
+
+assoc c2 (Committer) {
+    committer = Anton
+    osProject = Theia
+}
+
+assoc c3 (Committer) {
+    committer = Sven
+    osProject = Theia
+}
+
+assoc c4 (Committer) {
+    committer = Mo
+    osProject = Theia
+}
+
+assoc c5 (Committer) {
+    committer = Jan
+    osProject = Sprotty
+}
+
+assoc c6 (Committer) {
+    committer = Miro
+    osProject = Sprotty
+}
+
+obj TypeFox (Enterprise) {
+    name = "TypeFox"
+}
+
+assoc e0 (Employment) {
+    employee = Jan
+    employer = TypeFox
+}
+
+assoc e1 (Employment) {
+    employee = Miro
+    employer = TypeFox
+}
+
+assoc e2 (Employment) {
+    employee = Sven
+    employer = TypeFox
+}
+
+assoc e3 (Employment) {
+    employee = Mo
+    employer = TypeFox
+}
+
+assoc e4 (Employment) {
+    employee = Anton
+    employer = TypeFox
+}
+
+assoc e5 (Employment) {
+    employee = Alex
+    employer = TypeFox
+}
+
+assoc e6 (Employment) {
+    employee = Christin
+    employer = TypeFox
+}
